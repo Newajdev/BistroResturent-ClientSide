@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
+import SectionHeader from '../../../components/SectionHeader'
 
 import slider01 from '../../../assets/home/slide1.jpg'
 import slider02 from '../../../assets/home/slide2.jpg'
@@ -11,7 +12,10 @@ import slider05 from '../../../assets/home/slide5.jpg'
 
 const Category = () => {
     return (
-        <div>
+        <div className='my-12'>
+            <div>
+                <SectionHeader subTitle={'From 11:00am to 10:00pm'} Title={'ORDER ONLINE'}></SectionHeader>
+                </div>        
             <Swiper
                 slidesPerView={3}
                 spaceBetween={30}
