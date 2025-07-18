@@ -11,27 +11,27 @@ import img06 from '../../../../assets/home/06.png'
 import img07 from '../../../../assets/home/07.jpg'
 const Banner = () => {
     return (
-        <Carousel autoPlay={true} centerMode={true}>
+        <Carousel autoPlay={true}>
             <div>
-                <img src={img01} />
+                <img  src={img01} />
             </div>
             <div>
-                <img src={img02} />
+                <img  src={img02} />
             </div>
             <div>
-                <img src={img03} />
+                <img  src={img03} />
             </div>
             <div>
-                <img src={img04} />
+                <img  src={img04} />
             </div>
             <div>
-                <img src={img05} />
+                <img  src={img05} />
             </div>
             <div>
-                <img src={img06} />
+                <img  src={img06} />
             </div>
             <div>
-                <img src={img07} />
+                <img  src={img07} />
             </div>
         </Carousel>
     );

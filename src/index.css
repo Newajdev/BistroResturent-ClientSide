@@ -1,2 +1,13 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.hoverEffect li:hover{
+    color: #000 ;
+    background: #EEFF25;
+    border-radius: 5px;
+    transition: 0.4s;
+    
+}
+.about{
+    background-image: url('../src/assets/home/chef-service.jpg');
+}

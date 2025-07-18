@@ -15,7 +15,7 @@ const Category = () => {
         <div className='my-12'>
             <div>
                 <SectionHeader subTitle={'From 11:00am to 10:00pm'} Title={'ORDER ONLINE'}></SectionHeader>
-                </div>        
+            </div>
             <Swiper
                 slidesPerView={3}
                 spaceBetween={30}
@@ -34,15 +34,15 @@ const Category = () => {
                     <h3 className='text-4xl font-bold uppercase text-center -mt-32 text-white'>Pizza</h3>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slider03} alt="" className='w-full'/>
+                    <img src={slider03} alt="" className='w-full' />
                     <h3 className='text-4xl font-bold uppercase text-center -mt-32 text-white'>Soups</h3>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slider04} alt="" className='w-full'/>
+                    <img src={slider04} alt="" className='w-full' />
                     <h3 className='text-4xl font-bold uppercase text-center -mt-32 text-white'>Dessert</h3>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src={slider05} alt="" className='w-full'/>
+                    <img src={slider05} alt="" className='w-full' />
                     <h3 className='text-4xl font-bold uppercase text-center -mt-32 text-white'>Salads</h3>
                 </SwiperSlide>
 
