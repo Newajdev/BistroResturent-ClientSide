@@ -6,6 +6,7 @@ import Contact from "./contect/Contact";
 import OurMenu from "./ourmenu/OurMenu";
 import Recommends from "./recommend/Recommends";
 import Special from "./special/Special";
+import Testimonial from "./testimonial/Testimonial";
 
 const Home = () => {
     return (
@@ -18,6 +19,9 @@ const Home = () => {
             <Recommends></Recommends>
             </Container>
             <Special></Special>
+            <Container>
+                <Testimonial></Testimonial>
+            </Container>
         </div>
     );
 };
