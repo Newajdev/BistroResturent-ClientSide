@@ -1,12 +1,13 @@
 import Banner from "./banner/Banner";
 import pleaceholder from "../../../assets/others/profile.png"
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
     const NavOptions = <>
-        <li><a>Home</a></li>
-        <li><a>Contact us</a></li>
-        <li><a>Our Menu</a></li>
-        <li><a>our Shop</a></li>
+        <li><NavLink to={'/'}>Home</NavLink></li>
+        <li><NavLink to={'/contactus'}>Contact us</NavLink></li>
+        <li><NavLink to={'/ourmenu'}>Our Menu</NavLink></li>
+        <li><NavLink to={'/ourshop'}>our Shop</NavLink></li>
     </>
 
     return (

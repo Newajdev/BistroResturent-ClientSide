@@ -1,17 +1,53 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-.hoverEffect li:hover{
-    color: #000 ;
+.hoverEffect li:hover {
+    color: #000;
     background: #EEFF25;
     border-radius: 5px;
     transition: 0.4s;
-    
+
 }
-.about{
+
+.about {
     background-image: url('../src/assets/home/chef-service.jpg');
-} 
-.Special{
+}
+
+.Special {
     background-image: url('../src/assets/home/featured.jpg');
-    
-} 
+
+}
+
+.navbar ul li .active {
+    color: #EEFF25;
+    border-bottom: 2px solid #EEFF25;
+}
+
+.react-tabs__tab-list{
+    border: none !important;
+    display: flex;
+    gap: 30px;
+}
+
+.react-tabs__tab{
+    border: none !important;
+}
+.tabs{
+    padding: 5px 15px !important;
+    font-weight: bold;
+    font-size: 24px;
+    color: #0000006e;
+    text-transform: uppercase;
+    border: none !important;
+
+}
+.tabs:hover{
+    cursor: pointer;
+    color: #bb8506a6 !important;
+    border-bottom: 4px solid #BB8506a6 !important;
+}
+
+.react-tabs__tab--selected{
+    color: #BB8506 !important;
+    border-bottom: 4px solid #BB8506 !important;
+}
