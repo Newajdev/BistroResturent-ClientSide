@@ -19,39 +19,13 @@ const OurMenu = () => {
             <div className="my-28">
                 <Container>
                     <SectionHeader subTitle={"Don't Miss"} Title={"TODAY'S OFFER"}></SectionHeader>
-                    <MenuCategory items={popular}></MenuCategory>
                 </Container>
-                <div className="my-20">
-                <CoverImg img={img01} title={'salads'} subTitle={'Would you like to try a salad?'}></CoverImg>
-                </div>
-                    <Container>
-                        <MenuCategory items={salad}></MenuCategory>
-                    </Container>
-
-                <div className="my-20">
-                <CoverImg img={img01} title={'drinks'} subTitle={'Would you like to try a drink?'}></CoverImg>
-                </div>
-                <Container>
-                    <MenuCategory items={drinks}></MenuCategory>
-                </Container>
-                <div className="my-20">
-                <CoverImg img={img01} title={'desserts'} subTitle={'Would you like to try a dessert?'}></CoverImg>
-                </div>
-                <Container>
-                    <MenuCategory items={dessert}></MenuCategory>
-                </Container>
-                <div className="my-20">
-                <CoverImg img={img01} title={'pizzas'} subTitle={'Would you like to try a pizza?'}></CoverImg>
-                </div>
-                <Container>
-                    <MenuCategory items={pizza}></MenuCategory>
-                </Container>
-                <div className="my-20">
-                <CoverImg img={img01} title={'soups'} subTitle={'Would you like to try a soup?'}></CoverImg>
-                </div>
-                <Container>
-                    <MenuCategory items={soup}></MenuCategory>
-                </Container>
+                <MenuCategory items={popular} navigate={'/ourshop/popular'}></MenuCategory>
+                <MenuCategory items={salad} title={'salad'}></MenuCategory>
+                <MenuCategory items={drinks} title={'drinks'}></MenuCategory>
+                <MenuCategory items={dessert} title={'dessert'}></MenuCategory>
+                <MenuCategory items={pizza} title={'pizza'}></MenuCategory>
+                <MenuCategory items={soup} title={'soup'}></MenuCategory>
 
             </div>
         </div>

@@ -8,7 +8,7 @@ const PopulerMenu = () => {
     return (
         <div>
             <SectionHeader subTitle={'Check it out'} Title={'FROM OUR MENU'}></SectionHeader>
-            <MenuCategory items={popular}></MenuCategory>
+            <MenuCategory navigate={'/ourmenu'} items={popular}></MenuCategory>
         </div>
     );
 };

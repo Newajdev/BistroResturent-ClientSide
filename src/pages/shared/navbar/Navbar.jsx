@@ -1,4 +1,3 @@
-import Banner from "./banner/Banner";
 import pleaceholder from "../../../assets/others/profile.png"
 import { NavLink } from "react-router-dom";
 
@@ -7,7 +6,7 @@ const Navbar = () => {
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/contactus'}>Contact us</NavLink></li>
         <li><NavLink to={'/ourmenu'}>Our Menu</NavLink></li>
-        <li><NavLink to={'/ourshop'}>our Shop</NavLink></li>
+        <li><NavLink to={'/ourshop/dessert'}>our Shop</NavLink></li>
     </>
 
     return (

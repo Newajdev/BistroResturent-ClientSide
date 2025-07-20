@@ -6,12 +6,25 @@ import Container from '../../layout/Container';
 import useMenu from '../../hooks/useMenu';
 import { useState } from 'react';
 import FoodCard from '../../components/FoodCard';
+import { useParams } from 'react-router-dom';
 
 const OurShop = () => {
-    const [tabIndex, setTabIndex] = useState(0)
     const [menus] = useMenu()
-
     const categories = [...new Set((menus?.map(item => item.category)))]
+    const {category} = useParams()
+
+    const indexNum = categories?.indexOf(category)
+    
+    console.log(typeof(indexNum));
+    
+
+    const [tabIndex, setTabIndex] = useState(category)
+
+    console.log(tabIndex);
+
+    
+
+    // categories.unshift(categories.splice(5, 1)[0])
 
     const categoryWiseData = categories.map(cat => {
         return menus.filter(item => item.category === cat);
@@ -31,7 +44,8 @@ const OurShop = () => {
                         </TabList>
 
                         {
-                            categoryWiseData?.map((items, idx) => <TabPanel key={idx}>
+                            categoryWiseData?.map((items, idx) =>
+                            <TabPanel key={idx}>
                                 <div className='grid grid-cols-3 gap-8 my-6'>
                                     {
                                         items.map(item =>

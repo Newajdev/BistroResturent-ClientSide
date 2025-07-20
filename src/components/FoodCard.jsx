@@ -10,6 +10,7 @@ const FoodCard = ({item}) => {
                     src={image}
                     alt="Shoes" />
             </figure>
+            <p className='bg-[#BB8506] text-white absolute right-0 mr-3 mt-3 px-3 py-2 rounded-2xl text-xl font-semibold'>${price}</p>
             <div className="card-body text-center px-10">
                 <h2 className="text-2xl font-semibold mb-2">{name}</h2>
                 <p>{recipe}</p>
