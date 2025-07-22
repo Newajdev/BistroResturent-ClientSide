@@ -17,7 +17,7 @@ const MenuCategory = ({ items, navigate, title, subTitle }) => {
             <Container>
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
                     {
-                        items?.map(itme => <MenuItem key={itme.id} itmes={itme}></MenuItem>)
+                        items?.map(itme => <MenuItem key={itme._id} itmes={itme}></MenuItem>)
                     }
                 </div>
                 <div className='flex justify-center mt-16 gap-5'>

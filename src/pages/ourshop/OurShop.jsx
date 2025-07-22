@@ -21,8 +21,6 @@ const OurShop = () => {
         setTabIndex(index !== -1 ? index : 0);
     }, [category , categories]);
 
-    console.log(tabIndex);
-
 
     const categoryWiseData = categories.map(cat => {
         return menus.filter(item => item.category === cat);
@@ -39,7 +37,7 @@ const OurShop = () => {
                     <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                         <TabList>
                             {
-                                categories?.map(item => <Tab name='item' key={item._id} className={"tabs"}><Link to={`/ourshop/${item}`}>{item}</Link></Tab>)
+                                categories?.map((item, id) => <Tab name='item' key={id} className={"tabs"}><Link to={`/ourshop/${item}`}>{item}</Link></Tab>)
                             }
                         </TabList>
 
@@ -49,7 +47,7 @@ const OurShop = () => {
                                     <div className='grid grid-cols-3 gap-8 my-6'>
                                         {
                                             items.map(item =>
-                                                <FoodCard item={item}></FoodCard>
+                                                <FoodCard key={item._id} item={item}></FoodCard>
                                             )
                                         }
                                     </div>

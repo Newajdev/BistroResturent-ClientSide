@@ -1,12 +1,27 @@
+import { useContext } from "react";
 import pleaceholder from "../../../assets/others/profile.png"
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navbar = () => {
+    const { user, logOutUser,  } = useContext(AuthContext);
+    // const location  = useLocation()
+
+    const hendleLogout = () =>{
+        logOutUser()
+        
+    }
+    
+
     const NavOptions = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/contactus'}>Contact us</NavLink></li>
         <li><NavLink to={'/ourmenu'}>Our Menu</NavLink></li>
         <li><NavLink to={'/ourshop/dessert'}>our Shop</NavLink></li>
+        {
+            user?.email && <li><NavLink to={'/shopingcart'}><FaShoppingCart /></NavLink></li>
+        }
     </>
 
     return (
@@ -33,10 +48,22 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div className="navbar ">
-                        <button className="flex justify-center items-center btn flex-row-reverse bg-[#EEFF25] border-none">
-                            <img className="w-8 h-8 rounded-full ml-2" src={pleaceholder} alt="" />
-                            <h3 className="uppercase text-xl font-medium ">Sign out</h3>
-                            </button>
+                        {
+                            user?.email ?
+                                <button onClick={hendleLogout} className="flex justify-center items-center btn flex-row-reverse bg-[#EEFF25] border-none">
+                                    <img className="w-8 h-8 rounded-full ml-2" src={pleaceholder} alt="" />
+                                    <Link  className="uppercase text-xl font-medium " to={'/'}>Logout</Link>
+                                </button>
+                                :
+                                <button className="flex justify-center items-center btn flex-row-reverse bg-[#EEFF25] border-none"
+                                
+                                >
+                                    
+                                    <Link className="uppercase text-xl font-medium " to={'/login'}>Login</Link>
+                                </button>
+                        }
+
+
                     </div>
                 </div>
             </div>
