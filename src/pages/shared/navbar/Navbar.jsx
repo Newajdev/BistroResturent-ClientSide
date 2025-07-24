@@ -1,12 +1,28 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import pleaceholder from "../../../assets/others/profile.png"
 import { Link, NavLink, } from "react-router-dom";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Navbar = () => {
     const { user, logOutUser } = useContext(AuthContext);
+    const [cart, setCart] = useState([])
+    const AxiosSecure = useAxiosSecure()
+    
+    
+
+    useEffect(()=>{
+        AxiosSecure('/cart')
+        .then(data => {
+            const dataArray = [...data.data]
+            // console.log(dataArray);
+            
+            setCart(dataArray)
+        })
+        .catch(error => alert(error))
+    },[AxiosSecure])
 
     const hendleLogout = () => {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -42,7 +58,7 @@ const Navbar = () => {
         <li><NavLink to={'/ourshop/dessert'}>our Shop</NavLink></li>
         {
             user && <li className="avatar indicator mr-6">
-                <span className="indicator-item badge Badge ">+</span>
+                <span className="indicator-item badge Badge ">+{cart?.length}</span>
                 <NavLink to={'/shopingcart'}><FaShoppingCart /></NavLink>
             </li>
 
