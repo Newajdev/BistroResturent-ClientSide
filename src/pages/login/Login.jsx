@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Container from "../../layout/Container";
 import loginimag from "../../assets/others/authentication.gif"
 import img from "../../assets/others/authentication.png"
@@ -13,8 +13,11 @@ import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
     const [disabled, setDisabled] = useState(true)
+    const location = useLocation()
     const navigate = useNavigate()
     const { loginUser } = useContext(AuthContext)
+
+    const from = location.state?.from?.pathname || "/"
 
     const { register, handleSubmit, reset, formState: { errors }, } = useForm()
 
@@ -33,7 +36,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1000
                 });
-                navigate('/')
+                navigate(from, {replace: true})
             })
             .catch(error => {
 
@@ -61,7 +64,7 @@ const Login = () => {
     const ChapthaVaildate = (e) => {
         if (validateCaptcha(e.target.value)) {
             setDisabled(false)
-            loadCaptchaEnginge(4);
+            loadCaptchaEnginge(1);
         }
     }
 

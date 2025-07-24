@@ -27,24 +27,24 @@ export const router = createBrowserRouter([
         },
         {
             path: '/contactus',
-            element: <ContactUs></ContactUs>
+            element: <PriveteRoute><ContactUs></ContactUs></PriveteRoute>
         },
         {
             path: '/ourshop/:category',
-            element: <PriveteRoute><OurShop></OurShop></PriveteRoute>
+            element: <OurShop></OurShop>
         },
         {
             path: '/shopingcart',
             element: <ShopingCarts></ShopingCarts>
-        }
+        },
+        {
+          path:'/login',
+          element: <Login></Login>
+        },
+        {
+          path:'/register',
+          element: <Register></Register>
+        },
     ]
-  },
-  {
-    path:'/login',
-    element: <Login></Login>
-  },
-  {
-    path:'/register',
-    element: <Register></Register>
   },
 ]);

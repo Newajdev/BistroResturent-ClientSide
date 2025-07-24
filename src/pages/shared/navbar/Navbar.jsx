@@ -1,18 +1,39 @@
 import { useContext } from "react";
 import pleaceholder from "../../../assets/others/profile.png"
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, } from "react-router-dom";
 import { AuthContext } from "../../../provider/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-    const { user, logOutUser,  } = useContext(AuthContext);
-    // const location  = useLocation()
+    const { user, logOutUser } = useContext(AuthContext);
 
-    const hendleLogout = () =>{
-        logOutUser()
-        
+    const hendleLogout = () => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+            title: "Are you sure?",
+            text: "You and to Logout!",
+            showCancelButton: true,
+            confirmButtonText: "Yes!",
+            cancelButtonText: "No",
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                logOutUser()
+                    .then((resul) => console.log(resul)
+                    )
+            }
+        });
+
+
     }
-    
+
 
     const NavOptions = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
@@ -20,7 +41,11 @@ const Navbar = () => {
         <li><NavLink to={'/ourmenu'}>Our Menu</NavLink></li>
         <li><NavLink to={'/ourshop/dessert'}>our Shop</NavLink></li>
         {
-            user?.email && <li><NavLink to={'/shopingcart'}><FaShoppingCart /></NavLink></li>
+            user && <li className="avatar indicator mr-6">
+                <span className="indicator-item badge Badge ">+</span>
+                <NavLink to={'/shopingcart'}><FaShoppingCart /></NavLink>
+            </li>
+
         }
     </>
 
@@ -49,16 +74,16 @@ const Navbar = () => {
                     </div>
                     <div className="navbar ">
                         {
-                            user?.email ?
+                            user ?
                                 <button onClick={hendleLogout} className="flex justify-center items-center btn flex-row-reverse bg-[#EEFF25] border-none">
-                                    <img className="w-8 h-8 rounded-full ml-2" src={pleaceholder} alt="" />
-                                    <Link  className="uppercase text-xl font-medium " to={'/'}>Logout</Link>
+                                    <img className="w-8 h-8 rounded-full ml-2" src={`${user.photoURL ? user.photoURL : pleaceholder
+
+                                        }`} alt="" />
+                                    <Link className="uppercase text-xl font-medium " to={'/'}>Logout</Link>
                                 </button>
                                 :
                                 <button className="flex justify-center items-center btn flex-row-reverse bg-[#EEFF25] border-none"
-                                
                                 >
-                                    
                                     <Link className="uppercase text-xl font-medium " to={'/login'}>Login</Link>
                                 </button>
                         }

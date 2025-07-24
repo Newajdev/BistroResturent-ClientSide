@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PriButton from './PriButton';
+import { AuthContext } from '../provider/AuthProvider';
+import Swal from 'sweetalert2';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const FoodCard = ({item}) => {
-    const {name,recipe,image, price} = item
+const FoodCard = ({ item }) => {
+    const { _id, name, recipe, image, price } = item
+    const { user } = useContext(AuthContext)
+    const Navigate = useNavigate()
+    const location = useLocation()
+
+    const hendleAddToCart = id => {
+        if (user && user?.email) {
+
+            const UserEmail = user?.email;
+            const Item = id
+
+            const CartItem = { UserEmail, Item }
+
+
+            console.log(CartItem);
+        }
+        else {
+            Swal.fire({
+                title: "Your Not loged in yet",
+                text: "You have to login first",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Login"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Navigate('/login', {state:{from: location}})
+                }
+            });
+        }
+
+
+    }
     return (
         <div className="card bg-[#F3F3F3] w-96 shadow-sm">
             <figure className='h-[300px]'>
@@ -15,7 +51,7 @@ const FoodCard = ({item}) => {
                 <h2 className="text-2xl font-semibold mb-2">{name}</h2>
                 <p>{recipe}</p>
                 <div className="card-actions justify-center mt-6">
-                    <PriButton title={'Add to Cart'} brdrColor={'border-b-[#BB8506]'} txtColor={'text-[#BB8506]'}  hoverbg={'bg-[#1F2937]'}></PriButton>
+                    <PriButton ClieckHendler={() => hendleAddToCart(_id)} title={'Add to Cart'} brdrColor={'border-b-[#BB8506]'} txtColor={'text-[#BB8506]'} hoverbg={'bg-[#1F2937]'}></PriButton>
                 </div>
             </div>
         </div>

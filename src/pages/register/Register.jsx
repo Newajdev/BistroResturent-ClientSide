@@ -10,7 +10,7 @@ import { AuthContext } from "../../provider/AuthProvider";
 
 const Register = () => {
     const navigate = useNavigate()
-    const { createUser, logOutUser } = useContext(AuthContext)
+    const { createUser, logOutUser, UpdateUser } = useContext(AuthContext)
 
     const { register, handleSubmit, reset, formState: { errors }, } = useForm()
 
@@ -18,28 +18,43 @@ const Register = () => {
         reset()
         const Email = data.email;
         const Password = data.password
+        const Name = data.name
+        const ImageURL = data.photourl
 
         createUser(Email, Password)
             .then(() => {
-                Swal.fire({
-                    title: "Your Successfully Singup now login to continue",
-                    showClass: {
-                        popup: `
-          animate__animated
-          animate__fadeInUp
-          animate__faster
-        `
-                    },
-                    hideClass: {
-                        popup: `
-          animate__animated
-          animate__fadeOutDown
-          animate__faster
-        `
-                    }
-                });
-                logOutUser()
-                navigate('/login')
+                UpdateUser(Name, ImageURL)
+                    .then(() => {
+                        Swal.fire({
+                            title: "Your Successfully Singup now login to continue",
+                            showClass: {
+                                popup: `
+                                          animate__animated
+                                          animate__fadeInUp
+                                          animate__faster`
+                            },
+                            hideClass: {
+                                popup: `
+                                          animate__animated
+                                          animate__fadeOutDown
+                                          animate__faster`
+                            }
+                        });
+                        logOutUser()
+                        navigate('/login')
+                    })
+                    .catch(error => {
+
+                        if (error.message) {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops...",
+                                text: `This ${error.message} is already used Try with another`,
+                            });
+                        }
+
+                    })
+
             })
             .catch(error => {
 
@@ -70,9 +85,14 @@ const Register = () => {
                             <h3 className="text-4xl font-bold text-center">Register</h3>
                             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
                                 <label className="label">Name</label>
-                                <input {...register("name", { required: true, maxLength: 20 })} type="name" className="input w-full" placeholder="Email" />
+                                <input {...register("name", { required: true, maxLength: 20 })} type="text" className="input w-full" placeholder="Email" />
                                 {errors.name?.type === 'required' && <span className="text-red-500 -mt-5">Name is Required</span>}
                                 {errors.name?.type === 'maxLength' && <span className="text-red-500 -mt-5">Plase white a shot from of your name we accept only 20 Charector for name</span>}
+
+                                <label className="label">Photo Url</label>
+                                <input {...register("photourl", { required: true })} type="url" className="input w-full" placeholder="Your Profile  Photo here" />
+                                {errors.name?.type === 'required' && <span className="text-red-500 -mt-5">Photo URL is Required</span>}
+
 
 
                                 <label className="label">Email</label>
