@@ -4,6 +4,7 @@ import { AuthContext } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../hooks/useAxiosSecure';
+import useCart from '../hooks/useCart';
 
 const FoodCard = ({ item }) => {
     const { _id, name, recipe, image, price } = item
@@ -11,6 +12,7 @@ const FoodCard = ({ item }) => {
     const Navigate = useNavigate()
     const location = useLocation()
     const AxiosSecure = useAxiosSecure()
+    const [, refetch] = useCart()
 
     const hendleAddToCart = id => {
         if (user && user?.email) {
@@ -28,6 +30,7 @@ const FoodCard = ({ item }) => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                refetch()
             }}
             )
 
