@@ -2,11 +2,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Container from "../../layout/Container";
 import loginimag from "../../assets/others/authentication.gif"
 import img from "../../assets/others/authentication.png"
-import { useContext, useEffect,  useState } from "react";
+import { useEffect,  useState } from "react";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import { AuthContext } from "../../provider/AuthProvider";
+import useAuth from "../../hooks/useAuth";
+
 
 
 
@@ -15,7 +16,7 @@ const Login = () => {
     const [disabled, setDisabled] = useState(true)
     const location = useLocation()
     const navigate = useNavigate()
-    const { loginUser } = useContext(AuthContext)
+    const { loginUser } = useAuth()
 
     const from = location.state?.from?.pathname || "/"
 
@@ -64,7 +65,7 @@ const Login = () => {
     const ChapthaVaildate = (e) => {
         if (validateCaptcha(e.target.value)) {
             setDisabled(false)
-            loadCaptchaEnginge(1);
+            loadCaptchaEnginge(4);
         }
     }
 
@@ -94,8 +95,8 @@ const Login = () => {
 
 
                                 <div>
-                                    <div className="bg-none">
-                                        <LoadCanvasTemplate />
+                                    <div >
+                                        <LoadCanvasTemplate  />
                                     </div>
                                     <input type="text" onBlur={ChapthaVaildate} name="captha" className="input w-full" placeholder="Fill The upper Chaptha to Proved you are not a bot" />
                                 </div>

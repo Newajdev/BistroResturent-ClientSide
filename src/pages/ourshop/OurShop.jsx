@@ -9,9 +9,12 @@ import FoodCard from '../../components/FoodCard';
 import { Link, useParams } from 'react-router-dom';
 
 const OurShop = () => {
-    // const categories = ['popular', 'dessert', 'pizza', 'salad', 'soup', 'drinks'];
+    
     const [menus] = useMenu()
+    
     const categories = [...new Set((menus?.map(item => item.category)))]
+    console.log(categories);
+    
     const { category } = useParams();
 
     const [tabIndex, setTabIndex] = useState(0)

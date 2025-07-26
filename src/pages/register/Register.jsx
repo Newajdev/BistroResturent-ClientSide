@@ -6,12 +6,13 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 
 const Register = () => {
     const navigate = useNavigate()
+    const AxiosSecure = useAxiosSecure()
     const { createUser, logOutUser, UpdateUser } = useContext(AuthContext)
-
     const { register, handleSubmit, reset, formState: { errors }, } = useForm()
 
     const onSubmit = (data) => {
@@ -20,6 +21,9 @@ const Register = () => {
         const Password = data.password
         const Name = data.name
         const ImageURL = data.photourl
+        const userPosition = null
+
+        const userDetalis = {Name, Email, userPosition, ImageURL}
 
         createUser(Email, Password)
             .then(() => {
@@ -39,9 +43,19 @@ const Register = () => {
                                           animate__fadeOutDown
                                           animate__faster`
                             }
-                        });
+                            });
+                        
+                        
+                        AxiosSecure.post('/user', userDetalis)
+                        .then((res)=>{
+                            console.log(res.data);
+                            
+                            
+                    
+                        })
                         logOutUser()
                         navigate('/login')
+
                     })
                     .catch(error => {
 

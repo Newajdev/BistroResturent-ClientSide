@@ -46,6 +46,7 @@
     border: none !important;
 
 }
+
 .tabs:hover{
     cursor: pointer;
     color: #bb8506a6 !important;
@@ -55,4 +56,10 @@
 .react-tabs__tab--selected{
     color: #BB8506 !important;
     border-bottom: 4px solid #BB8506 !important;
+}
+
+
+.captha #canv{
+   display: flex !important;
+   
 }
