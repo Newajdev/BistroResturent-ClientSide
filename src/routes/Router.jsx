@@ -8,9 +8,10 @@ import ContactUs from "../pages/contact us/ContactUs";
 import OurShop from "../pages/ourshop/OurShop";
 import ShopingCarts from "../pages/shopingcart/ShopingCarts";
 import Login from "../pages/login/Login";
-import Register from "../pages/register/register";
 import PriveteRoute from "./PriveteRoute";
 import Deshboard from "../layout/Deshboard";
+import Register from "../pages/register/Register";
+import AllUsers from "../pages/deshboard/allusers/AllUsers";
 
 export const router = createBrowserRouter([
   {
@@ -45,10 +46,10 @@ export const router = createBrowserRouter([
   },
   {
     path: '/deshboard',
-    element: <Deshboard></Deshboard>,
+    element: <PriveteRoute><Deshboard></Deshboard></PriveteRoute>,
     children: [
       {
-        path: '/deshboard',
+        path: '/deshboard/home',
         element: <h1>home</h1>
       },
       {
@@ -70,6 +71,11 @@ export const router = createBrowserRouter([
       {
         path: '/deshboard/bookings',
         element: <h1>This is bookings page</h1>
+      },
+      // ----------------Admin Routes------------------------------
+      {
+        path: '/deshboard/alluser',
+        element: <AllUsers></AllUsers>
       },
 
     ]

@@ -7,6 +7,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import SocialButton from "../../components/SocialButton";
 
 
 
@@ -103,6 +104,8 @@ const Login = () => {
                                 <button disabled={disabled} className="btn bg-[#D1A054] disabled mt-4 text-xl font-bold text-white">Login</button>
                             </form>
                             <p className="text-[#D1A054]  text-center">New here? <Link className="font-semibold" to={'/register'}>Create a New Account</Link></p>
+                            <div className="divider">or</div>
+                            <SocialButton></SocialButton>
                         </div>
                     </div>
                 </div>

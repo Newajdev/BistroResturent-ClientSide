@@ -62,8 +62,7 @@ const Navbar = () => {
     return (
         <>
             <div className="fixed z-20 w-full">
-                <h3 className="bg-amber-200 w-screen text-center font-bold "><Link to={'/deshboard'}>Deshboard</Link></h3>
-                <div className="navbar  justify-between bg-[#0000004f] text-white">
+               <div className="navbar  justify-between bg-[#0000004f] text-white">
                     <div className="navbar-start ">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

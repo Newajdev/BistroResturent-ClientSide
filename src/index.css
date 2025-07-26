@@ -18,7 +18,7 @@
 
 }
 
-.navbar ul li .active {
+.navbar ul  li .active {
     color: #EEFF25;
     border-bottom: 2px solid #EEFF25;
 }
@@ -62,4 +62,10 @@
 .captha #canv{
    display: flex !important;
    
+}
+
+.deshboard li .active{
+    background-color: blue;
+    border-radius: 20px 0 0 20px;
+    color: white;
 }

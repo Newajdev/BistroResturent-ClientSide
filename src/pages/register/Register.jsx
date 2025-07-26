@@ -6,12 +6,14 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialButton from "../../components/SocialButton";
+
 
 
 const Register = () => {
+    const AxiosPublic = useAxiosPublic()
     const navigate = useNavigate()
-    const AxiosSecure = useAxiosSecure()
     const { createUser, logOutUser, UpdateUser } = useContext(AuthContext)
     const { register, handleSubmit, reset, formState: { errors }, } = useForm()
 
@@ -23,38 +25,46 @@ const Register = () => {
         const ImageURL = data.photourl
         const userPosition = null
 
-        const userDetalis = {Name, Email, userPosition, ImageURL}
 
         createUser(Email, Password)
             .then(() => {
                 UpdateUser(Name, ImageURL)
                     .then(() => {
-                        Swal.fire({
-                            title: "Your Successfully Singup now login to continue",
-                            showClass: {
-                                popup: `
+
+
+                        const userDetalis = { Name, Email, userPosition, ImageURL }
+                        AxiosPublic.post('/users', userDetalis)
+                            .then((res) => {
+
+                                if (res.data.insertedId) {
+
+                                    console.log('user Added to the database');
+
+                                    Swal.fire({
+                                        title: "Your Successfully Singup now login to continue",
+                                        showClass: {
+                                            popup: `
                                           animate__animated
                                           animate__fadeInUp
                                           animate__faster`
-                            },
-                            hideClass: {
-                                popup: `
+                                        },
+                                        hideClass: {
+                                            popup: `
                                           animate__animated
                                           animate__fadeOutDown
                                           animate__faster`
-                            }
-                            });
-                        
-                        
-                        AxiosSecure.post('/user', userDetalis)
-                        .then((res)=>{
-                            console.log(res.data);
-                            
-                            
-                    
-                        })
-                        logOutUser()
-                        navigate('/login')
+                                        }
+                                    });
+                                }
+                                logOutUser()
+                                navigate('/login')
+
+                            })
+                            .catch(error => console.log(error.message)
+                            )
+
+
+
 
                     })
                     .catch(error => {
@@ -124,6 +134,8 @@ const Register = () => {
                                 <button className="btn bg-[#D1A054] mt-4 text-xl font-bold text-white">Login</button>
                             </form>
                             <p className="text-[#D1A054]  text-center">Already have an Account? <Link className="font-semibold" to={'/login'}>login</Link></p>
+                            <div className="divider">or</div>
+                            <SocialButton></SocialButton>
                         </div>
                     </div>
                 </div>
