@@ -26,7 +26,7 @@ const Login = () => {
     const onSubmit = (data) => {
         reset()
 
-        const Email = data.email;
+        const Email = data.email.toLowerCase();
         const Password = data.password
         loginUser(Email, Password)
             .then(() => {

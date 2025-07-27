@@ -8,7 +8,6 @@ import useAuth from '../hooks/useAuth';
 const FoodCard = ({ item }) => {
     const { _id, name, recipe, image, price } = item
     const { user } = useAuth();
-    console.log(user);
     
 
     // const { user } = useContext(AuthContext)

@@ -1,20 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { FaTrash, FaUserAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import UsersTable from "../../../components/UsersTable";
 
 
 const AllUsers = () => {
     const { user: currentUser } = useAuth()
-    
-   
     const CurrentEmail = currentUser?.email
     
-    
-    
-
-
     const AxiosSecure = useAxiosSecure()
     const { data: users, refetch } = useQuery({
         queryKey: ['users'],
@@ -155,39 +149,7 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users?.map((user, idx) =>
-                                <>
-                                    <tr key={idx}>
-                                        <th>
-                                            {idx + 1}
-                                        </th>
-                                        <td>
-                                            <div className="flex items-center gap-3">
-                                                <div className="avatar">
-                                                    <div className="mask mask-squircle h-12 w-12">
-                                                        <img
-                                                            src={user.ImageURL}
-                                                            alt="Avatar Tailwind CSS Component" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            {user.Name}
-                                        </td>
-                                        <td>
-                                            {user.Email}
-                                        </td>
-                                        <td>
-                                            {
-                                                user?.userPosition === 'admin' ? <><p>admin</p></> : <><button onClick={() => hendlerMakeAdmin(user)} className="btn bg-amber-500 text-white"><FaUserAlt></FaUserAlt></button></>
-                                            }
-                                        </td>
-                                        <th>
-                                            <button onClick={() => hendlerDelateUser(user)} className="btn bg-red-500 text-white"><FaTrash></FaTrash></button>
-                                        </th>
-                                    </tr>
-                                </>)
+                            users?.map((user, idx) =><UsersTable key={user._id} user={user} idx={idx} hendlerMakeAdmin={hendlerMakeAdmin} hendlerDelateUser={hendlerDelateUser}></UsersTable>)
                         }
                     </tbody>
 

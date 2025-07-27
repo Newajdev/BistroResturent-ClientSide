@@ -11,7 +11,6 @@ const SocialButton = () => {
     const hendleGoogleRegister = () => {
         googleLogin()
             .then(res => {
-                console.log(res.user);
                 const Email = res.user?.email;
                 const Name = res.user?.displayName;
                 const userPosition = null;

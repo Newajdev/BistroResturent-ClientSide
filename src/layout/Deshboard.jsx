@@ -1,20 +1,14 @@
 
-import { useQuery } from '@tanstack/react-query';
 import { FaBook, FaHome, FaList, FaPhone, FaShoppingCart, FaStore, FaStreetView, FaUtensils, FaWallet } from 'react-icons/fa';
 import { FaCalendar, FaUser } from 'react-icons/fa6';
 import { NavLink, Outlet } from 'react-router-dom';
-import useAxiosSecure from '../hooks/useAxiosSecure';
+import useAdmin from '../hooks/useAdmin';
+
 
 const Deshboard = () => {
-    const AxiosSecure = useAxiosSecure()
-    const { data: users,} = useQuery({
-        queryKey: ['users'],
-        queryFn: async () => {
-            const res = await AxiosSecure('/users');
-            return res.data;
-
-        }
-    })
+    
+  
+    const [isAdmin] = useAdmin();
 
   
     return (
@@ -26,7 +20,7 @@ const Deshboard = () => {
 
                     <ul className='menu uppercase text-xl font-medium hoverEffect w-full pl-16 space-y-4'>
                         {
-                            users?.userPosition === 'admin' ?
+                            isAdmin ?
                                 <>
                                     <li><NavLink to={'/deshboard/adminhome'}><FaHome></FaHome>Admin home</NavLink></li>
                                     <li><NavLink to={'/deshboard/additems'}><FaUtensils></FaUtensils> Add Items</NavLink></li>

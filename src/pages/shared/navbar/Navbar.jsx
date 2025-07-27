@@ -7,7 +7,7 @@ import useAuth from "../../../hooks/useAuth";
 
 
 const Navbar = () => {
-    const { user, logOutUser } = useAuth()
+    const { user, logOutUser } = useAuth()  
     const [Cart] = useCart()
     const TotalItems = Cart.reduce((Total, items) => Total + items.quantity, 0)
 

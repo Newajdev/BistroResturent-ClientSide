@@ -19,7 +19,7 @@ const Register = () => {
 
     const onSubmit = (data) => {
         reset()
-        const Email = data.email;
+        const Email = data.email.toLowerCase();
         const Password = data.password
         const Name = data.name
         const ImageURL = data.photourl
@@ -30,6 +30,8 @@ const Register = () => {
             .then(() => {
                 UpdateUser(Name, ImageURL)
                     .then(() => {
+
+                    
 
 
                         const userDetalis = { Name, Email, userPosition, ImageURL }

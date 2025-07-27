@@ -13,7 +13,6 @@ const OurShop = () => {
     const [menus] = useMenu()
     
     const categories = [...new Set((menus?.map(item => item.category)))]
-    console.log(categories);
     
     const { category } = useParams();
 

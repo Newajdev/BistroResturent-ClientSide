@@ -1,6 +1,6 @@
 import React from 'react';
 
-const sectionHeader = ({subTitle, Title}) => {
+const SectionHeader = ({subTitle, Title}) => {
     return (
         <div className='text-center mb-12'>
             <p className='text-orange-400 text-xl'>---{subTitle}---</p>
@@ -11,4 +11,4 @@ const sectionHeader = ({subTitle, Title}) => {
     );
 };
 
-export default sectionHeader;
+export default SectionHeader;
