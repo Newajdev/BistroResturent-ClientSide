@@ -54,7 +54,7 @@ const Deshboard = () => {
                 </div>
 
             </div>
-            <div className='h-screen w-4/5 ml-[20%] p-32'>
+            <div className='h-screen w-4/5 ml-[20%] px-32 py-10'>
                 <Outlet></Outlet>
             </div>
         </div>
