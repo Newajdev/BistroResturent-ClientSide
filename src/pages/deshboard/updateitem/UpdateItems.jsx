@@ -10,7 +10,7 @@ import { useState } from "react";
 const API_KEY = import.meta.env.VITE_Image_Hosting_API
 const Image_UPLOAD_API = `https://api.imgbb.com/1/upload?key=${API_KEY}`
 
-const AddItem = () => {
+const UpdateItems = () => {
     const AxiosPublic = useAxiosPublic()
     const AxiosSecure = useAxiosSecure()
     const [loading, setLoading] = useState(false)
@@ -114,4 +114,4 @@ const AddItem = () => {
     );
 };
 
-export default AddItem;
+export default UpdateItems;
