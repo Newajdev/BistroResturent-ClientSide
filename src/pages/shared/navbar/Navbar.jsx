@@ -4,17 +4,17 @@ import { FaShoppingCart } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useCart from "../../../hooks/useCart";
 import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
+import { LuMonitorCog } from "react-icons/lu";
 
 
 const Navbar = () => {
-    const { user, logOutUser } = useAuth()  
+    const { user, logOutUser } = useAuth()
+    const [isAdmin] = useAdmin();
+
+
     const [Cart] = useCart()
     const TotalItems = Cart.reduce((Total, items) => Total + items.quantity, 0)
-
-
-
-
-
 
     const hendleLogout = () => {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -34,15 +34,13 @@ const Navbar = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 logOutUser()
-                    .then((resul) => console.log(resul)
-                    )
             }
         });
 
 
     }
 
-    
+
 
 
     const NavOptions = <>
@@ -51,10 +49,14 @@ const Navbar = () => {
         <li><NavLink to={'/ourmenu'}>Our Menu</NavLink></li>
         <li><NavLink to={'/ourshop/dessert'}>our Shop</NavLink></li>
         {
-            user && <li className="avatar indicator mr-6">
+            user && isAdmin ? <><li className="avatar indicator mr-6">
+                <NavLink to={'/deshboard/adminhome'}><LuMonitorCog /></NavLink>
+            </li>
+
+            </> : <><li className="avatar indicator mr-6">
                 <span className="indicator-item badge Badge ">+{TotalItems}</span>
                 <NavLink to={'/deshboard/cart'}><FaShoppingCart /></NavLink>
-            </li>
+            </li></>
 
         }
     </>
@@ -62,7 +64,7 @@ const Navbar = () => {
     return (
         <>
             <div className="fixed z-20 w-full">
-               <div className="navbar  justify-between bg-[#0000004f] text-white">
+                <div className="navbar  justify-between bg-[#0000004f] text-white">
                     <div className="navbar-start ">
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

@@ -14,6 +14,7 @@ import Register from "../pages/register/Register";
 import AllUsers from "../pages/deshboard/allusers/AllUsers";
 import AddItem from "../pages/deshboard/additems/AddItem";
 import AdminRoute from "./AdminRoute";
+import ManageItems from "../pages/deshboard/manageitems/ManageItems";
 
 export const router = createBrowserRouter([
   {
@@ -85,7 +86,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/deshboard/manageitems',
-        element: <h2>This Is manage your Items</h2>
+        element: <ManageItems></ManageItems>
       },
       {
         path: '/deshboard/managebookings',
