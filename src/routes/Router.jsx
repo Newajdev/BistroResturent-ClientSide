@@ -15,6 +15,7 @@ import AllUsers from "../pages/deshboard/allusers/AllUsers";
 import AddItem from "../pages/deshboard/additems/AddItem";
 import AdminRoute from "./AdminRoute";
 import ManageItems from "../pages/deshboard/manageitems/ManageItems";
+import UpdateItems from "../pages/deshboard/updateitem/UpdateItems";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,11 @@ export const router = createBrowserRouter([
       {
         path: '/deshboard/manageitems',
         element: <ManageItems></ManageItems>
+      },
+      {
+        path: '/deshboard/update/:id',
+        element: <AdminRoute><UpdateItems></UpdateItems></AdminRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
       },
       {
         path: '/deshboard/managebookings',

@@ -1,7 +1,8 @@
 import { FaTrash, FaUserAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
-const ItemsTable = ({ item, idx, hendlerDelateItem, hendlerUpdate}) => {
+const ItemsTable = ({ item, idx, hendlerDelateItem}) => {
     return (
         <tr>
                     <th>
@@ -26,7 +27,7 @@ const ItemsTable = ({ item, idx, hendlerDelateItem, hendlerUpdate}) => {
                     </td>
                     <td>
                         {
-                            item?.userPosition === 'admin' ? <><p>admin</p></> : <><button onClick={() => hendlerUpdate(item)} className="btn bg-amber-500 text-white"><FaUserAlt></FaUserAlt></button></>
+                            item?.userPosition === 'admin' ? <><p>admin</p></> : <><button className="btn bg-amber-500 text-white"><Link to={`/deshboard/update/${item._id}`}><FaUserAlt></FaUserAlt></Link></button></>
                         }
                     </td>
                     <th>
