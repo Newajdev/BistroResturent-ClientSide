@@ -1,21 +1,51 @@
 
+import Swal from 'sweetalert2';
 import ItemsTable from '../../../components/itemsTable';
 import SectionHeader from '../../../components/SectionHeader';
+import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import useMenu from '../../../hooks/useMenu';
 
 const ManageItems = () => {
+    const AxiosSecure = useAxiosSecure()
 
     const [menu, , refetch] = useMenu()
 
     const hendlerDelateItem = (Item) => {
-        alert(Item._id);
-        
+        Swal.fire({
+            title: "Are you sure?",
+            text: `You want to DELETE ${Item.name} this Food!`,
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                AxiosSecure.delete(`/menu/${Item._id}`)
+                    .then(res => {
+                        console.log(res);
+                        
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: `${Item.name} Successfully Deleted`,
+                                showConfirmButton: false,
+                                timer: 1000
+                            });
+                            refetch()
+                        }
+                    })
+            }
+        });
+
+
     }
 
-    
-    
 
-    
+
+
+
 
 
 
@@ -25,7 +55,7 @@ const ManageItems = () => {
             <div>
                 <div className="flex justify-between mx-32">
                     <h2 className="text-3xl font-bold">All Users</h2>
-                    <h2 className="text-3xl font-bold">Total Users: {menu.length}</h2>
+                    <h2 className="text-3xl font-bold">Total Users: {menu?.length}</h2>
                 </div>
                 <div>
                     {/* ToDo: add a Searchbar Here */}
@@ -50,7 +80,7 @@ const ManageItems = () => {
                                 menu?.map((item, idx) => <ItemsTable key={item._id} idx={idx} item={item} hendlerDelateItem={hendlerDelateItem}></ItemsTable>)
                             }
                         </tbody>
- 
+
                     </table>
                 </div>
             </div>
