@@ -3,6 +3,7 @@ import TableRow from '../../components/TableRow';
 import useCart from '../../hooks/useCart';
 import Container from "../../layout/Container"
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import { Link } from 'react-router-dom';
 
 
 
@@ -61,7 +62,7 @@ const ShopingCarts = () => {
                                     <h2 className='text-3xl font-bold'>Total Items: {Cart.length}</h2>
                                     <h2 className='text-3xl font-bold'>Total Quantity: {TotalItems}</h2>
                                     <h2 className='text-3xl font-bold'>Total Price: {TotalPrice}</h2>
-                                    <button className='btn bg-[#D1A054] text-xl font-bold'>Pay</button>
+                                    <button  className='btn bg-[#D1A054] text-xl font-bold'><Link to={'/deshboard/payment'}>Pay</Link></button>
                                 </div>
                                 <table className="table">
                                     {/* head */}

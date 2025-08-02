@@ -16,6 +16,9 @@ import AddItem from "../pages/deshboard/additems/AddItem";
 import AdminRoute from "./AdminRoute";
 import ManageItems from "../pages/deshboard/manageitems/ManageItems";
 import UpdateItems from "../pages/deshboard/updateitem/UpdateItems";
+import Payment from "../pages/deshboard/payment/Payment";
+import AdminHome from "../pages/deshboard/adminhome/AdminHome";
+import UserHome from "../pages/deshboard/userhome/UserHome";
 
 export const router = createBrowserRouter([
   {
@@ -54,15 +57,15 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/deshboard/home',
-        element: <h1>home</h1>
+        element: <UserHome></UserHome>
       },
       {
-        path: '/deshboard/reservation',
-        element: <h1>This is Reservation page</h1>
+        path: '/deshboard/payment',
+        element: <Payment></Payment>
       },
       {
-        path: '/deshboard/payments',
-        element: <h1>This is payment page</h1>
+        path: '/deshboard/payment-history',
+        element: <h1>This is payment-history page</h1>
       },
       {
         path: '/deshboard/cart',
@@ -79,7 +82,7 @@ export const router = createBrowserRouter([
       // ----------------Admin Routes------------------------------
       {
         path: '/deshboard/adminhome',
-        element: <h2>This Is Admin Home</h2>
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
       },
       {
         path: '/deshboard/additems',

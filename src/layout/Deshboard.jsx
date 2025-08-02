@@ -3,12 +3,14 @@ import { FaBook, FaHome, FaList, FaPhone, FaShoppingCart, FaStore, FaStreetView,
 import { FaCalendar, FaUser } from 'react-icons/fa6';
 import { NavLink, Outlet } from 'react-router-dom';
 import useAdmin from '../hooks/useAdmin';
+import useCart from '../hooks/useCart';
 
 
 const Deshboard = () => {
     
   
     const [isAdmin] = useAdmin();
+    const [Cart] = useCart()
 
   
     return (
@@ -33,9 +35,8 @@ const Deshboard = () => {
                                 // ------------------------------------------------------------------------------------
                                 <>
                                     <li><NavLink to={'/deshboard/home'}><FaHome></FaHome> user home</NavLink></li>
-                                    <li><NavLink to={'/deshboard/reservation'}><FaCalendar></FaCalendar>reservation</NavLink></li>
-                                    <li><NavLink to={'/deshboard/payments'}><FaWallet></FaWallet> payment history</NavLink></li>
-                                    <li><NavLink to={'/deshboard/cart'}><FaShoppingCart></FaShoppingCart> my cart</NavLink></li>
+                                    <li><NavLink to={'/deshboard/payment-history'}><FaWallet></FaWallet> payment history</NavLink></li>
+                                    <li><NavLink to={'/deshboard/cart'}><FaShoppingCart></FaShoppingCart> my cart ({Cart.length })</NavLink></li>
                                     <li><NavLink to={'/deshboard/review'}><FaStreetView></FaStreetView> add review</NavLink></li>
                                     <li><NavLink to={'/deshboard/bookings'}><FaList></FaList> my booking</NavLink></li>
                                 </>
